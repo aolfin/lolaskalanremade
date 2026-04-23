@@ -1,4 +1,4 @@
-function CartPanel({ visible, cart, onClose, onRemove, onQuantityChange }) {
+function CartPanel({ visible, cart, onClose, onRemove, onQuantityChange, onCheckout }) {
   if (!visible) {
     return null;
   }
@@ -43,10 +43,7 @@ function CartPanel({ visible, cart, onClose, onRemove, onQuantityChange }) {
                 <strong>Total</strong>
                 <span className="text-primary fw-bold">${total.toFixed(2)}</span>
               </div>
-              <button type="button" className="btn btn-warning w-100" onClick={() => {
-                alert(`Thank you for your order!\n\nTotal: $${total.toFixed(2)}\n\nYour food will be ready soon!`);
-                window.location.reload();
-              }}>
+              <button type="button" className="btn btn-warning w-100" onClick={onCheckout}>
                 Checkout
               </button>
             </div>

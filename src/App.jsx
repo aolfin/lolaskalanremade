@@ -34,10 +34,24 @@ function App() {
     setCart((prev) =>
       prev
         .map((item) =>
-          item.title === title ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item
+          item.title === title ? { ...item, quantity: Math.max(0, item.quantity + delta) } : item
         )
         .filter((item) => item.quantity > 0)
     );
+  };
+
+  const checkoutCart = () => {
+    const total = cart.reduce(
+      (sum, item) => sum + item.quantity * parseFloat(item.price.replace('$', '')),
+      0
+    );
+    if (total <= 0) {
+      return;
+    }
+
+    alert(`Thank you for your order!\n\nTotal: $${total.toFixed(2)}\n\nYour food will be ready soon!`);
+    setCart([]);
+    setCartOpen(false);
   };
 
   const handleCartToggle = () => {
@@ -53,6 +67,7 @@ function App() {
         onClose={() => setCartOpen(false)}
         onRemove={removeFromCart}
         onQuantityChange={updateQuantity}
+        onCheckout={checkoutCart}
       />
       <main className="flex-fill">
         <Routes>
