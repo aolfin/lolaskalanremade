@@ -11,7 +11,7 @@ function Menu({ onAddToCart }) {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const response = await fetch(`${BACKEND_URL}/api/menu`);
+        const response = await fetch('/api/menu');
         if (!response.ok) {
           throw new Error('Failed to fetch menu items');
         }
