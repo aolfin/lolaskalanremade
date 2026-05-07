@@ -7,8 +7,6 @@ services:
     container_name: lolaskalan-backend
     ports:
       - "5000:5000"
-    env_file:
-      - ./server/.env
     environment:
       NODE_ENV: production
     networks:
