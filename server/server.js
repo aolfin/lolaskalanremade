@@ -8,11 +8,31 @@ import Order from './models/Order.js';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+const allowedOrigins = [
+  'http://localhost:5173', 
+  'http://localhost:5000', 
+  'http://localhost',
+  'http://frontend',
+  'https://aolfin.github.io', 
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      console.log('CORS blocked origin:', origin);
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/lolaskalan';
+const MONGODB_URI = process.env.MONGODB_URI; // No default, it must come from .env
 
 mongoose.connect(MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))

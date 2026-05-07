@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import PageHeader from './PageHeader';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+
 function Menu({ onAddToCart }) {
   const [dishes, setDishes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,7 +11,7 @@ function Menu({ onAddToCart }) {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/menu');
+        const response = await fetch(`${BACKEND_URL}/api/menu`);
         if (!response.ok) {
           throw new Error('Failed to fetch menu items');
         }

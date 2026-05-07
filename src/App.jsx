@@ -8,6 +8,9 @@ import About from './components/About';
 import Contact from './components/Contact';
 import CartPanel from './components/CartPanel';
 
+// Use relative URLs — nginx proxies /api to backend
+const BACKEND_URL = '';
+
 function App() {
   const [cart, setCart] = useState({ items: [] }); // Initialize cart as an object with items array
   const [cartOpen, setCartOpen] = useState(false);
@@ -17,7 +20,7 @@ function App() {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/cart');
+        const response = await fetch('/api/cart');
         if (!response.ok) {
           throw new Error('Failed to fetch cart');
         }
@@ -36,7 +39,7 @@ function App() {
 
   const updateCartBackend = async (action, payload) => {
     try {
-      const response = await fetch('http://localhost:5000/api/cart/update', {
+      const response = await fetch('/api/cart/update', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -77,7 +80,7 @@ function App() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/orders', {
+      const response = await fetch('/api/orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

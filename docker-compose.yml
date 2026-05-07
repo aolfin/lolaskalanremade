@@ -1,0 +1,34 @@
+services:
+  # Node.js/Express Backend
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: lolaskalan-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./server/.env
+    environment:
+      NODE_ENV: production
+    networks:
+      - lolaskalan-network
+
+  # React Frontend
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lolaskalan-frontend
+    ports:
+      - "80:80"
+    environment:
+      VITE_BACKEND_URL: http://backend:5000
+    depends_on:
+      - backend
+    networks:
+      - lolaskalan-network
+
+networks:
+  lolaskalan-network:
+    driver: bridge
