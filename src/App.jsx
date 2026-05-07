@@ -8,8 +8,8 @@ import About from './components/About';
 import Contact from './components/Contact';
 import CartPanel from './components/CartPanel';
 
-// Use relative URLs — nginx proxies /api to backend
-const BACKEND_URL = '';
+// Use the backend public URL directly
+const BACKEND_URL = 'https://lolas-backend-production.up.railway.app';
 
 function App() {
   const [cart, setCart] = useState({ items: [] }); // Initialize cart as an object with items array
@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const response = await fetch('/api/cart');
+        const response = await fetch(`${BACKEND_URL}/api/cart`);
         if (!response.ok) {
           throw new Error('Failed to fetch cart');
         }
@@ -39,7 +39,7 @@ function App() {
 
   const updateCartBackend = async (action, payload) => {
     try {
-      const response = await fetch('/api/cart/update', {
+      const response = await fetch(`${BACKEND_URL}/api/cart/update`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ function App() {
     }
 
     try {
-      const response = await fetch('/api/orders', {
+      const response = await fetch(`${BACKEND_URL}/api/orders`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
