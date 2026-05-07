@@ -15,6 +15,7 @@ const allowedOrigins = [
   'http://localhost',
   'http://frontend',
   'https://aolfin.github.io', 
+  'https://lolaskalanremade-production.up.railway.app', // Your Railway frontend domain
 ];
 
 app.use(cors({
