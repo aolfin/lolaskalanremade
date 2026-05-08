@@ -5,8 +5,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "VITE_BACKEND_URL=http://localhost:5000 vite",
+    "build": "VITE_BACKEND_URL=YOUR_DEPLOYED_BACKEND_URL vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
