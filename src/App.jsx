@@ -8,7 +8,6 @@ import About from './components/About';
 import Contact from './components/Contact';
 import CartPanel from './components/CartPanel';
 
-// Use the backend public URL directly
 const BACKEND_URL = 'https://lolas-backend-production.up.railway.app';
 
 function App() {
