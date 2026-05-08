@@ -19,9 +19,7 @@ function App() {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const response = await fetch(`${BACKEND_URL}/api/cart`, {
-          credentials: 'include',
-        });
+        const response = await fetch(`${BACKEND_URL}/api/cart`);
         if (!response.ok) {
           throw new Error('Failed to fetch cart');
         }
@@ -45,7 +43,6 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include',
         body: JSON.stringify({ action, ...payload }),
       });
 
