@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PageHeader from './PageHeader';
 
-const BACKEND_URL = '';
+const BACKEND_URL = 'https://lolas-backend-production.up.railway.app';
 
 function Menu({ onAddToCart }) {
   const [dishes, setDishes] = useState([]);
