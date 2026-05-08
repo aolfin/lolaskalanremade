@@ -155,6 +155,11 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected' });
 });
 
+// Root route for basic check
+app.get('/', (req, res) => {
+  res.json({ message: 'Lola\'s Kalan Backend API is running!' });
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
