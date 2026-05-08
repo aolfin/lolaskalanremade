@@ -4,11 +4,14 @@ FROM node:20-alpine
 # Set the working directory to /app
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+# Clear any existing node_modules
+RUN rm -rf node_modules package-lock.json
 
-# Install application dependencies
-RUN npm install
+# Copy package.json
+COPY package.json ./
+
+# Install application dependencies fresh
+RUN npm install --no-cache
 
 # Copy the rest of the application code
 COPY . .
